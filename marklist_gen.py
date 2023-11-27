@@ -6,7 +6,7 @@ def main():
         import os.path
         noOfStudents = int(input("Enter the number of students :"))
         grade=input("Enter the Class :")
-        MAXMARKS=int(input("Enter toltal marks:"))
+        MAXMARKS=int(input("Enter total marks:"))
         noOfsubjects=int(input("Enter the number of subjects:"))
         subjects=[]
         marks=[]
@@ -14,13 +14,13 @@ def main():
         print("Enter the subject names in order")
         for i in range(0,noOfsubjects):
             subjects.append(input("Enter the subject number"+str(i)+":"))
+        if os.path.isdir('./out'):
+            print('')
+        else:
+            os.makedirs('./out')
 
         for i in range(0,noOfStudents):
-            name = input("name of student"+str(i)+": ")
-            if os.path.isdir('./out'):
-                print('pog u already have a folder')
-            else:
-                os.makedirs('./out') 
+            name = input("name of student"+str(i)+":")
             workbook = xlsxwriter.Workbook('out/'+name+'.xlsx')       
             ws = workbook.add_worksheet()
             for sub in subjects:
@@ -75,9 +75,9 @@ def main():
                 var+=1
             
             ws.write('B'+str(val+1),'Total',yellow_merge)
-            ws.write('C'+str(val+1),add_list(marks))
+            ws.write('C'+str(val+1),sum(marks))
             ws.write('B'+str(val + 2),'Percentage',yellow_merge)
-            ws.write('C'+str(val +2),round(add_list(marks)/(MAXMARKS*noOfsubjects)*100,2))
+            ws.write('C'+str(val +2),round(sum(marks)/(MAXMARKS*noOfsubjects)*100,2))
             workbook.close()   
     except KeyboardInterrupt:
         print("\nClosing")
