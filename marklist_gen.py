@@ -73,7 +73,7 @@ def main():
         for i in range(0,noOfsubjects):
             subjects.append(input("Enter the subject number ",str(i)+":"))
         
-        
+        #create the excel files
         for i in range(0,noOfStudents):
             name = input("name of student"+str(i)+":")
             workbook = xlsxwriter.Workbook('out/'+name+'.xlsx')       
